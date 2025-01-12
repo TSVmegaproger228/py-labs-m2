@@ -70,3 +70,11 @@ class Jazz(MusicalWork):
         :return: Строка, указывающая на воспроизведение джазового произведения.
         """
         return f"Playing {self.title} by {self.artist} - a jazz piece with improvisation level {self.__improvisation_level}"
+
+    def get_improvisation_level(self) -> int:
+        """
+        Возвращает уровень импровизации джазового произведения.
+
+        :return: Уровень импровизации.
+        """
+        return self.__improvisation_level
