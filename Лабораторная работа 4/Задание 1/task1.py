@@ -38,7 +38,7 @@ class MusicalWork:
         return f"Playing {self.title} by {self.artist}"
 
     def add_to_favorites(self) -> str:
-        return f'Add {self.title} by {self.artist} to favourites'
+        return f'{self.title!r} by {self.artist!r} has been added to favourites'
     """
     Унаследованный метод для дочернего класса Jazz
     """
@@ -77,4 +77,4 @@ class Jazz(MusicalWork):
         return f"Playing {self.title} by {self.artist} - a jazz piece with improvisation level {self.__improvisation_level}"
 
 
-print(Jazz('Caravan', 'Buddy Rich', 1962, 10).add_to_favorites()) #Реализация унаследованного метода для класса Jazz
+print(Jazz('Caravan', 'Buddy Rich', 1962, 10).add_to_favorites()) #Пример работы унаследованного метода
