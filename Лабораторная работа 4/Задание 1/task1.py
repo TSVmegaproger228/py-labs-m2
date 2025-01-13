@@ -2,86 +2,79 @@
 class MusicalWork:
     """
     Базовый класс для музыкальных произведений.
-    Хранит информацию о названии, исполнителе и годе выпуска.
+
+    Атрибуты:
+        title (str): Название произведения.
+        artist (str): Исполнитель произведения.
+        year (int): Год выпуска произведения.
     """
 
     def __init__(self, title: str, artist: str, year: int) -> None:
         """
-        Инициализация музыкального произведения.
+        Конструктор класса MusicalWork.
 
         :param title: Название произведения.
         :param artist: Исполнитель произведения.
         :param year: Год выпуска произведения.
         """
-        self.__title = title  # Приватный атрибут для защиты данных
-        self.__artist = artist  # Приватный атрибут для защиты данных
-        self.__year = year  # Приватный атрибут для защиты данных
+        self.title = title
+        self.artist = artist
+        self.year = year
 
     def __str__(self) -> str:
-        """
-        Возвращает строковое представление музыкального произведения.
-
-        :return: Строка в формате "Название - Исполнитель (Год)".
-        """
-        return f"{self.__title} - {self.__artist} ({self.__year})"
+        """Возвращает строковое представление музыкального произведения."""
+        return f"{self.title} by {self.artist} ({self.year})"
 
     def __repr__(self) -> str:
-        """
-        Возвращает формальное представление музыкального произведения.
+        """Возвращает официальное строковое представление музыкального произведения."""
+        return f"MusicalWork(title='{self.title}', artist='{self.artist}', year={self.year})"
 
-        :return: Строка в формате "MusicalWork(Название, Исполнитель, Год)".
-        """
-        return f"MusicalWork('{self.__title}', '{self.__artist}', {self.__year})"
-
-    def play(self) -> None:
+    def play(self) -> str:
         """
         Воспроизводит музыкальное произведение.
-        
-        Эта функция может быть переопределена в дочерних классах.
-        """
-        print(f"Воспроизводится {self.__str__()}.")
 
+        :return: Строка, указывающая на воспроизведение произведения.
+        """
+        return f"Playing {self.title} by {self.artist}"
+
+    def add_to_favorites(self) -> str:
+        return f'Add {self.title} by {self.artist} to favourites'
+    """
+    Унаследованный метод для дочернего класса Jazz
+    """
 
 # TODO: описать дочерний класс
 class Jazz(MusicalWork):
     """
-    Дочерний класс для джазовых музыкальных произведений.
-    Добавляет уровень импровизации к базовым атрибутам.
+    Класс для джазовых музыкальных произведений, наследует от MusicalWork.
+
+    Атрибуты:
+        improvisation_level (int): Уровень импровизации в произведении (от 1 до 10).
     """
 
     def __init__(self, title: str, artist: str, year: int, improvisation_level: int) -> None:
         """
-        Инициализация джазового произведения.
+        Конструктор класса Jazz.
 
-        :param title: Название произведения.
-        :param artist: Исполнитель произведения.
-        :param year: Год выпуска произведения.
-        :param improvisation_level: Уровень импровизации (от 1 до 10).
+        :param title: Название джазового произведения.
+        :param artist: Исполнитель джазового произведения.
+        :param year: Год выпуска джазового произведения.
+        :param improvisation_level: Уровень импровизации.
         """
-        super().__init__(title, artist, year)  # Вызов конструктора базового класса
-        self.__improvisation_level = improvisation_level  # Приватный атрибут
+        super().__init__(title, artist, year)
+        self.__improvisation_level = improvisation_level  # Инкапсуляция для защиты атрибута
 
     def __str__(self) -> str:
-        """
-        Возвращает строковое представление джазового произведения.
+        """Возвращает строковое представление джазового произведения с уровнем импровизации."""
+        return f"{super().__str__()} with improvisation level of {self.__improvisation_level}"
 
-        :return: Строка в формате "Название - Исполнитель (Год) [Импровизация: Уровень]".
+    def play(self) -> str:
         """
-        return f"{super().__str__()} [Импровизация: {self.__improvisation_level}]"
+        Воспроизводит джазовое произведение с добавлением информации об импровизации.
 
-    def __repr__(self) -> str:
+        :return: Строка, указывающая на воспроизведение джазового произведения.
         """
-        Возвращает формальное представление джазового произведения.
+        return f"Playing {self.title} by {self.artist} - a jazz piece with improvisation level {self.__improvisation_level}"
 
-        :return: Строка в формате "Jazz(Название, Исполнитель, Год, Уровень Импровизации)".
-        """
-        return f"Jazz('{self._MusicalWork__title}', '{self._MusicalWork__artist}', {self._MusicalWork__year}, {self.__improvisation_level})"
 
-    def play(self) -> None:
-        """
-        Воспроизводит джазовое произведение с учетом уровня импровизации.
-
-        Переопределение метода play для добавления специфической функциональности,
-        связанной с джазовой музыкой.
-        """
-        print(f"Воспроизводится джазовое произведение {self.__str__()} с уровнем импровизации {self.__improvisation_level}.")
+print(Jazz('Caravan', 'Buddy Rich', 1962, 10).add_to_favorites()) #Реализация унаследованного метода для класса Jazz
