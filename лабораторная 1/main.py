@@ -21,3 +21,4 @@ try:
     account.add_score(-10)  # Отрицательные очки
 except ValueError as e:
     print(f"Ошибка: неправильные данные")
+ 
